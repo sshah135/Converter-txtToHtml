@@ -2,6 +2,27 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const rimraf = require('rimraf'); // We'll use the 'rimraf' package to delete directories
+const markdownIt = require('markdown-it')(); // Require and initialize the markdown-it package
+
+
+// Function to convert Markdown to HTML
+function markdownToHtml(markdown) {
+  // Configure markdown-it for rendering bold text with double asterisks or double underscores
+  markdownIt.use(require('markdown-it-container'), 'hljs', {
+    render: (tokens, idx) => {
+      if (tokens[idx].nesting === 1) {
+        // Opening tag for a block of highlighted code
+        return '<div class="hljs">';
+      } else {
+        // Closing tag for a block of highlighted code
+        return '</div>';
+      }
+    },
+  });
+
+  // Use markdown-it to render Markdown as HTML
+  return markdownIt.render(markdown);
+}
 
 // Function to convert text to HTML with paragraphs
 function textToHtml(text) {
@@ -22,27 +43,32 @@ function textToHtml(text) {
 // Function to process a single file
 function processFile(inputFile, outputDir) {
   try {
-    // Read the content of the input .txt file
-    const txtContent = fs.readFileSync(inputFile, 'utf-8');
+    const fileExtension = path.extname(inputFile);
 
-    // Generate HTML content
-    const htmlContent = textToHtml(txtContent);
-
-    // Ensure the output directory exists
-    mkdirp.sync(outputDir);
-
-    // Determine the output file path
-    const outputFileName = `${path.basename(inputFile, '.txt')}.html`;
-    const outputPath = path.join(outputDir, outputFileName);
-
-    // Write the HTML content to the output .html file
-    fs.writeFileSync(outputPath, htmlContent);
+    if (fileExtension === '.txt') {
+      // Read and convert text files to HTML
+      const txtContent = fs.readFileSync(inputFile, 'utf-8');
+      const htmlContent = textToHtml(txtContent);
+      const outputFileName = `${path.basename(inputFile, '.txt')}.html`;
+      const outputPath = path.join(outputDir, outputFileName);
+      fs.writeFileSync(outputPath, htmlContent);
+    } else if (fileExtension === '.md') {
+      // Read and convert Markdown files to HTML
+      const mdContent = fs.readFileSync(inputFile, 'utf-8');
+      const htmlContent = markdownToHtml(mdContent);
+      const outputFileName = `${path.basename(inputFile, '.md')}.html`;
+      const outputPath = path.join(outputDir, outputFileName);
+      fs.writeFileSync(outputPath, htmlContent);
+    } else {
+      console.error(`Unsupported file extension: ${fileExtension}`);
+    }
 
     console.log(`Successfully converted ${inputFile} to ${outputPath}`);
   } catch (err) {
     console.error(`Error: ${err.message}`);
   }
 }
+
 
 // Function to process a directory of .txt files
 function processDirectory(inputDir, outputDir) {
