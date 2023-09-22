@@ -1,0 +1,53 @@
+<h1>Converter-txtToHtml</h1>
+<h1>Text-to-HTML Converter</h1>
+<p>This command-line tool converts plain text files into valid HTML5 files. It can process single text files or all text files within a directory.</p>
+<h2>Installation</h2>
+<p>Before using this tool, make sure you have <a href="https://nodejs.org/">Node.js</a> installed on your system.</p>
+<ol>
+<li>
+<p>Clone or download this repository to your local machine.</p>
+</li>
+<li>
+<p>Open your terminal or command prompt and navigate to the project directory.</p>
+</li>
+<li>
+<p>Install the required dependencies by running:</p>
+</li>
+</ol>
+<h2>Usage</h2>
+<p>You can use this tool to convert text files to HTML with various options.</p>
+<h3>Basic Usage</h3>
+<p>To convert a single text file to HTML:</p>
+<pre><code class="language-bash">node txtToHtml.js &lt;input-file&gt; [options]
+</code></pre>
+<h3>Options</h3>
+<ul>
+<li>
+<p><code>-o, --output &lt;output-directory&gt;</code>: Specify the output directory for the generated HTML files. If not specified, the default is <code>./til</code>.</p>
+<p>Example:</p>
+</li>
+</ul>
+<pre><code class="language-bash">node txtToHtml.js ./example.txt -o ./output_folder
+</code></pre>
+<h3>Additional Features</h3>
+<h4>Title Parsing</h4>
+<ul>
+<li>If your input file contains a title, it should be the first line followed by two blank lines. The title will be used as the <code>&lt;title&gt;</code> and as an <code>&lt;h1&gt;</code> element in the HTML file.</li>
+</ul>
+<h4>Default Behavior</h4>
+<ul>
+<li>By default, the tool creates an output directory named <code>til</code> (short for &quot;text-to-HTML&quot;) in the current directory to store the generated HTML files. Existing content in the <code>til</code> directory is removed before generating new output.</li>
+</ul>
+<h2>Examples</h2>
+<p>Here are some usage examples:</p>
+<p>Convert a single text file and specify an output directory</p>
+<pre><code class="language-bash">node txtToHtml.js ./example.txt -o ./custom_output
+</code></pre>
+<p>Convert a directory of text files</p>
+<pre><code class="language-bash">node txtToHtml.js ./text_files -o ./output
+</code></pre>
+<p>Convert a text file with a specified stylesheet URL</p>
+<pre><code class="language-bash">node txtToHtml.js ./example.txt -s https://example.com/styles.css
+</code></pre>
+<h2>License</h2>
+<p>This project is licensed under the MIT License - see the <a href="LICENSE">LICENSE</a> file for details.</p>
