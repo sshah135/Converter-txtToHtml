@@ -118,38 +118,44 @@ function processDirectory(inputDir, outputDir) {
 
 // Main function
 function main() {
-  const args = process.argv.slice(2);
+  try {
+    const args = process.argv.slice(2);
 
-  if (args.length < 1) {
-    console.error('Usage: node txtToHtml.js <input-file-or-directory> [output-directory] [-l|--lang <language>]');
-    return;
-  }
-
-  let lang = 'en-CA'; // Default language
-
-  // Parse command line arguments
-for (let i = 0; i < args.length; i++) {
-  if (args[i] === '-l' || args[i] === '--lang') {
-    lang = args[i + 1] || 'en-CA';
-    // Skip the next argument as it has been processed as the language
-    i++;
-  }
-}
-
-
-const inputPath = args.find(arg => !arg.startsWith('-'));
-const outputDirIndex = args.indexOf('-l') !== -1 ? args.indexOf('-l') + 2 : args.indexOf('--lang') !== -1 ? args.indexOf('--lang') + 2 : args.indexOf(inputPath) + 1;
-const outputDir = args[outputDirIndex] || './til';
-
-
-  if (fs.existsSync(inputPath)) {
-    if (fs.lstatSync(inputPath).isDirectory()) {
-      processDirectory(inputPath, outputDir, lang);
-    } else {
-      processFile(inputPath, outputDir, lang);
+    if (args.length < 1) {
+      console.error('Usage: node txtToHtml.js <input-file-or-directory> [output-directory] [-l|--lang <language>]');
+      process.exit(1); // Exit with an error code
     }
-  } else {
-    console.error('Error: Input file or directory not found.');
+
+    let lang = 'en-CA'; // Default language
+
+    // Parse command line arguments
+    for (let i = 0; i < args.length; i++) {
+      if (args[i] === '-l' || args[i] === '--lang') {
+        lang = args[i + 1] || 'en-CA';
+        // Skip the next argument as it has been processed as the language
+        i++;
+      }
+    }
+
+    const inputPath = args.find(arg => !arg.startsWith('-'));
+    const outputDirIndex = args.indexOf('-l') !== -1 ? args.indexOf('-l') + 2 : args.indexOf('--lang') !== -1 ? args.indexOf('--lang') + 2 : args.indexOf(inputPath) + 1;
+    const outputDir = args[outputDirIndex] || './til';
+
+    if (fs.existsSync(inputPath)) {
+      if (fs.lstatSync(inputPath).isDirectory()) {
+        processDirectory(inputPath, outputDir, lang);
+      } else {
+        processFile(inputPath, outputDir, lang);
+      }
+      console.log('Conversion completed successfully.');
+      process.exit(0); // Exit with success code
+    } else {
+      console.error('Error: Input file or directory not found.');
+      process.exit(1); // Exit with an error code
+    }
+  } catch (error) {
+    console.error(`Unexpected Error: ${error.message}`);
+    process.exit(1); // Exit with an error code
   }
 }
 
