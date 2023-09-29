@@ -63,6 +63,11 @@ Convert a text file with a specified stylesheet URL
 node txtToHtml.js ./example.txt -s https://example.com/styles.css
 ```
 
+Convert a text file or Markdown language from any language to CAD English
+```bash
+node txtToHtml.js inputfile.txt -l fr til
+```
+
 
 ## License
 
