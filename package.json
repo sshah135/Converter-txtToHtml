@@ -13,6 +13,7 @@
   "dependencies": {
     "markdown-it": "^13.0.1",
     "mkdirp": "^3.0.1",
-    "rimraf": "^5.0.1"
+    "rimraf": "^5.0.1",
+    "toml": "^3.0.0"
   }
 }
