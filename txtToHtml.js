@@ -42,9 +42,6 @@ function markdownToHtml(markdown, lang = 'en-CA') {
   return markdownIt.render(markdown);
 }
 
-  // Use markdown-it to render Markdown as HTML
-  return markdownIt.render(markdown);
-
 
 // Function to convert text to HTML with paragraphs
 function textToHtml(text) {
