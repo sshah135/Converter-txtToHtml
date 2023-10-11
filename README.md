@@ -14,7 +14,6 @@ Before using this tool, make sure you have [Node.js](https://nodejs.org/) instal
 
 3. Install the required dependencies by running:
 
-
 ## Usage
 
 You can use this tool to convert text files to HTML with various options.
@@ -22,6 +21,7 @@ You can use this tool to convert text files to HTML with various options.
 ### Basic Usage
 
 To convert a single text file to HTML:
+
 ```bash
 node txtToHtml.js <input-file> [options]
 ```
@@ -31,9 +31,13 @@ node txtToHtml.js <input-file> [options]
 - `-o, --output <output-directory>`: Specify the output directory for the generated HTML files. If not specified, the default is `./til`.
 
   Example:
-```bash  
+
+```bash
 node txtToHtml.js ./example.txt -o ./output_folder
 ```
+
+- `-c`, `--config`: specify the file path to a TOML-based config file
+
 ### Additional Features
 
 #### Title Parsing
@@ -49,25 +53,28 @@ node txtToHtml.js ./example.txt -o ./output_folder
 Here are some usage examples:
 
 Convert a single text file and specify an output directory
+
 ```bash
 node txtToHtml.js ./example.txt -o ./custom_output
 ```
 
 Convert a directory of text files
+
 ```bash
 node txtToHtml.js ./text_files -o ./output
 ```
 
 Convert a text file with a specified stylesheet URL
+
 ```bash
 node txtToHtml.js ./example.txt -s https://example.com/styles.css
 ```
 
 Convert a text file or Markdown language from any language to CAD English
+
 ```bash
 node txtToHtml.js inputfile.txt -l fr til
 ```
-
 
 ## License
 
