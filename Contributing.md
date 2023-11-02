@@ -31,7 +31,9 @@ We use Prettier for code formatting. Make sure to run the following command befo
 ```bash
 npm run format
 ```
+
 ### Linter
+
 We use ESLint for code linting. Run the following command to check for linting issues:
 
 ```bash
@@ -43,6 +45,7 @@ npm run lint
 Ensure that your code editor is configured to use the provided settings for Prettier and ESLint. Refer to .vscode/settings.json for VSCode settings.
 
 ### Git Pre-Commit Hook
+
 To maintain code consistency, a pre-commit hook is set up to run the formatter and linter before each commit. Ensure that the code passes these checks before committing.
 
 ## Submitting Changes
@@ -58,7 +61,9 @@ To maintain code consistency, a pre-commit hook is set up to run the formatter a
 5. Submit a pull request with a clear title and description.
 
 ### Code of Conduct
+
 Please note that this project is released with a Contributor Code of Conduct. By participating in this project, you agree to abide by its terms.
 
 ### License
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
