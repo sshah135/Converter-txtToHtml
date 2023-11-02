@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
 const rimraf = require("rimraf");
+const { generateSidebar, generateIndexPage } = require("./txtToHtml");
 
 function processFile(inputFile, outputDir, lang) {
     try {
@@ -30,6 +31,7 @@ function processFile(inputFile, outputDir, lang) {
         console.log(`Successfully converted ${inputFile} to ${outputPath}`);
       } catch (err) {
         console.error(`Error: ${err.message}`);
+
       }
 }
 
@@ -43,6 +45,9 @@ function processDirectory(inputDir, outputDir, lang) {
     
         // Read the files in the input directory
         const files = fs.readdirSync(inputDir);
+        generateSidebar(files, outputDir);
+        generateIndexPage(files, outputDir);
+
     
         // Process each .txt file
         files.forEach((file) => {

@@ -2,6 +2,7 @@
 const fs = require("fs");
 const toml = require("toml");
 
+
 function parseCommandLineArgs(args) {
   let lang = "en-CA";
   let outputDir = "./til";

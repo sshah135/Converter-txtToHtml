@@ -69,6 +69,54 @@ function textToHtml(text) {
 </body>
 </html>`;
 }
+
+function generateSidebar(files, outputDir) {
+  const sidebarContent = files
+    .filter((file) => file.endsWith(".html"))
+    .map((file) => `<li><a href="${file}">${file}</a></li>`)
+    .join("\n");
+
+  const sidebarHtml = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Sidebar</title>
+    </head>
+    <body>
+      <ul>${sidebarContent}</ul>
+    </body>
+    </html>`;
+
+  const sidebarPath = path.join(outputDir, "sidebar.html");
+  fs.writeFileSync(sidebarPath, sidebarHtml);
+  console.log(`Sidebar generated successfully: ${sidebarPath}`);
+}
+
+function generateIndexPage(files, outputDir) {
+  const indexContent = files
+    .filter((file) => file.endsWith(".html"))
+    .map((file) => `<li><a href="${file}">${file}</a></li>`)
+    .join("\n");
+
+  const indexHtml = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Index Page</title>
+    </head>
+    <body>
+      <h1>Index Page</h1>
+      <ul>${indexContent}</ul>
+    </body>
+    </html>`;
+
+  const indexPath = path.join(outputDir, "index.html");
+  fs.writeFileSync(indexPath, indexHtml);
+  console.log(`Index page generated successfully: ${indexPath}`);
+}
+
 class FileProcessor{
   constructor(inputFile, outputDir, lang){
     this.inputFile = inputFile;
@@ -127,3 +175,12 @@ class FileProcessor{
   }
  }
 }
+
+module.exports = {
+  convertTextToHtml,
+  convertMarkdownToHtml,
+  textToHtml,
+  markdownToHtml,
+  generateSidebar,
+  generateIndexPage,
+};
