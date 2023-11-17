@@ -1,11 +1,10 @@
-const { FileProcessor, textToHtml, markdownToHtml, generateSidebar, generateIndexPage } = require('./main');
+//txtToHtml.js
+
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const rimraf = require('rimraf') // We'll use the 'rimraf' package to delete directories
 const markdownIt = require('markdown-it')() // Require and initialize the markdown-it package
-
-
 
 function textToHtml(text, lang = 'en-CA') {
   const paragraphs = text

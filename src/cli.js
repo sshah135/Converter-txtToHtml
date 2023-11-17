@@ -4,7 +4,7 @@ const toml = require('toml')
 
 function parseCommandLineArgs(args) {
   let lang = 'en-CA'
-  let outputDir = './til'
+  let outputDir = process.env.NODE_ENV === 'test' ? './test_output' : './til'
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '-c' || args[i] === '--config') {
