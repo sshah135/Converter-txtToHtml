@@ -1,3 +1,4 @@
+//cli.test.js
 const { parseCommandLineArgs } = require('../src/cli')
 
 describe('parseCommandLineArgs', () => {

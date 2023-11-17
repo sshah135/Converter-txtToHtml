@@ -1,5 +1,5 @@
 // main.js
-const { FileProcessor } = require('./src/txtToHtml')
+const { FileProcessor } = require('./txtToHtml')
 const {
   processFile,
   generateSidebar,
@@ -11,17 +11,16 @@ const { parseCommandLineArgs } = require('./cli')
 function main() {
   try {
     const args = process.argv.slice(2)
-    const { lang, outputDir, inputPath } = parseCommandLineArgs(args)
+    const { lang, outputDir, inputPath } = parseCommandLineArgs(args);
 
     if (!inputPath) {
-      console.error('Error: Input file or directory path not provided.')
-      process.exit(1) // Exit with an error code
+      throw new Error('Error: Input file or directory path not provided.');
     }
 
     if (fs.existsSync(inputPath)) {
       if (fs.lstatSync(inputPath).isDirectory()) {
-        const fileProcessor = new FileProcessor(null, outputDir, lang)
-        fileProcessor.processDirectory(inputPath, outputDir)
+        throw new Error('Error: Input file or directory not found.');
+      }
 
         // Generate a sidebar and index page
         const files = fs.readdirSync(outputDir)
@@ -37,9 +36,9 @@ function main() {
       process.exit(1) // Exit with an error code
     }
   } catch (error) {
-    console.error(`Unexpected Error: ${error.message}`)
-    process.exit(1) // Exit with an error code
+    console.error(`Unexpected Error: ${error.message}`);
+    process.exit(1); // Exit with an error code
   }
 }
 
-module.exports = main
+module.exports = main;
