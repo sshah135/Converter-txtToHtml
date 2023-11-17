@@ -72,6 +72,8 @@ function generateSidebar(files, outputDir) {
   const sidebarPath = path.join(outputDir, 'sidebar.html')
   fs.writeFileSync(sidebarPath, sidebarHtml)
   console.log(`Sidebar generated successfully: ${sidebarPath}`)
+
+  return sidebarHtml
 }
 
 function generateIndexPage(files, outputDir) {
@@ -96,6 +98,8 @@ function generateIndexPage(files, outputDir) {
   const indexPath = path.join(outputDir, 'index.html')
   fs.writeFileSync(indexPath, indexHtml)
   console.log(`Index page generated successfully: ${indexPath}`)
+
+  return indexHtml
 }
 
 class FileProcessor {
