@@ -1,11 +1,10 @@
-const { FileProcessor, textToHtml, markdownToHtml, generateSidebar, generateIndexPage } = require('./main');
+//txtToHtml.js
+
 const fs = require('fs')
 const path = require('path')
 const mkdirp = require('mkdirp')
 const rimraf = require('rimraf') // We'll use the 'rimraf' package to delete directories
 const markdownIt = require('markdown-it')() // Require and initialize the markdown-it package
-
-
 
 function textToHtml(text, lang = 'en-CA') {
   const paragraphs = text
@@ -73,6 +72,8 @@ function generateSidebar(files, outputDir) {
   const sidebarPath = path.join(outputDir, 'sidebar.html')
   fs.writeFileSync(sidebarPath, sidebarHtml)
   console.log(`Sidebar generated successfully: ${sidebarPath}`)
+
+  return sidebarHtml
 }
 
 function generateIndexPage(files, outputDir) {
@@ -97,6 +98,8 @@ function generateIndexPage(files, outputDir) {
   const indexPath = path.join(outputDir, 'index.html')
   fs.writeFileSync(indexPath, indexHtml)
   console.log(`Index page generated successfully: ${indexPath}`)
+
+  return indexHtml
 }
 
 class FileProcessor {

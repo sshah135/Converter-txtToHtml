@@ -40,6 +40,14 @@ We use ESLint for code linting. Run the following command to check for linting i
 npm run lint
 ```
 
+## Running Tests
+
+To run the tests locally, use the following command:
+
+```bash
+npm test
+```
+
 ### Editor/IDE Integration
 
 Ensure that your code editor is configured to use the provided settings for Prettier and ESLint. Refer to .vscode/settings.json for VSCode settings.
