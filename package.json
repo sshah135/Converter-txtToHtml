@@ -1,7 +1,7 @@
 {
   "name": "converter",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.0",
+  "description": "It's a converter site which converts text and MD format file to HTML files",
   "main": "../src/cli.js",
   "scripts": {
     "start": "node ../src/cli.js",
